@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <title>CRUD Vanilla JavaScript </title>
+        <!-- Custom style sheet -->
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+  <body>
+        <div class="container-fluid">
+            <!-- heading -->
+            <div class="row pt-4">
+                <div class="col-12">
+                    <h1 class="text-center">CRUD Operation</h1>
+                </div>
+            </div>
+            <!-- Result Page -->
+            <div class="firstPage">
+                <div class="row my-3">
+                    <div class="col-4"></div>
+                    <div class="col-8">
+                        <form class="form-inline float-right">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-outline-danger" id="dltRecord">Delete</button>
+                            </div>
+                            <div class="form-group mx-4">
+                                <button type="button" class="btn btn-outline-primary" id="addRecord">Add Record</button>
+                            </div>
+                            <div class="form-group">
+                                <input type="search" class="form-control" id="searchInput" placeholder="Search...">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- form area -->
+                <div class="row">
+                    <div class="col-12 no-gutters p-0">
+                        <table class="table table-striped">
+                            <thead class="bg-primary text-white">
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">#</th>
+                                    <th scope="col" class="sortFun" data-toggle="tooltip" data-placement="top" title="Click to sort">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Superhero Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Gender</th>
+                                    <th scope="col">Age</th>
+                                </tr>
+                            </thead>
+                            <tbody id="showData"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Add Record Page -->
+        <div class="addRecordForm" style="display: none;">
+            <div class="relativeClass">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row parentClass">
+                                <div class="col-12">
+                                    <button class="btn crossBtn">X</button>
+                                </div>
+                            </div>
+                            <form class="form">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="firstName">First Name</label>
+                                            <input type="text" class="form-control" id="firstName" aria-describedby="fNameHelp" placeholder="First Name">
+                                            <small id="fNameHelp" class="form-text text-danger err"></small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="lastName">Last Name</label>
+                                            <input type="text" class="form-control" id="lastName" aria-describedby="lNameHelp" placeholder="Last Name">
+                                            <small id="lNameHelp" class="form-text text-danger err"></small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="superHero">Superhero Name</label>
+                                            <input type="text" class="form-control" id="superHero" aria-describedby="sNameHelp" placeholder="Superhero Name">
+                                            <small id="sNameHelp" class="form-text text-danger err"></small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="emailInput">Email address</label>
+                                            <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Enter email">
+                                            <small id="emailHelp" class="form-text text-danger err"></small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="genderInfo">Gender</label>
+                                        <div>
+                                            <div class="form-check-inline">
+                                                <input class="form-check-input" type="radio" name="gender" id="maleInfo" value="M">
+                                                <label class="form-check-label" for="maleInfo">Male</label>
+                                            </div>
+                                            <div class="form-check-inline">
+                                                <input class="form-check-input" type="radio" name="gender" id="female" value="F">
+                                                <label class="form-check-label" for="female">Female</label>
+                                            </div>
+                                            <small class="form-text text-danger err"></small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="age">Age</label>
+                                            <input type="number" class="form-control" id="age" aria-describedby="ageHelp" placeholder="Age" min="1" max="100">
+                                            <small id="ageHelp" class="form-text text-danger err"></small>
+                                        </div>
+                                    </div>
+                                </div>    
+                                <button type="submit" class="btn btn-primary" id="addData">Submit</button>
+                                <button type="reset" class="btn btn-warning" id="resetData">Reset</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <!-- custom script -->
+        <script src="./script/script.js"></script>
+  </body>
+</html>
